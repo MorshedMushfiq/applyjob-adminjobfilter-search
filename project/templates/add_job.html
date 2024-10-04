@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block body %}
+
+
+
+
+<h2>Add Job</h2>
+<form action="" method="POST" id="jobAddForm">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" name="jobTitle" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyName" name="companyName" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Job Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" name="salary" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="employmentType">Employment Type</label>
+        <select id="employmentType" name="employmentType" required>
+            <option value="">Select Type</option>
+            <option value="full_time">Full-Time</option>
+            <option value="part_time">Part-Time</option>
+            <option value="contract">Contract</option>
+            <option value="internship">Internship</option>
+            <option value="temporary">Temporary</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="applicationDeadline">Application Deadline</label>
+        <input type="date" id="applicationDeadline" name="applicationDeadline" required>
+    </div>
+    <button type="submit">Add Job</button>
+</form>
+
+
+
+
+    
+{% endblock body %}
+    
+
+
+
+

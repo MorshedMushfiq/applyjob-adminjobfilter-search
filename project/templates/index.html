@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+
+
+{% block body %}
+
+
+
+
+
+
+  <div class="search-container">
+    <form action="{% url 'searchJob' %}" method="GET">
+      <input type="text" name="search" class="search-input" placeholder="Search...">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+  </div>
+
+
+
+  <div class="job-feed-section">
+    <h2>Job Feed</h2>
+    {{user.user_type}}
+    {% include 'messages.html' %}
+    
+    {% for data in data %}
+    <div class="job-list">
+        <div class="job-item">
+            <h3>{{data.job_title}}</h3>
+            <p><strong>Company:</strong> {{data.company_name}}</p>
+            <p><strong>Location:</strong> {{data.location}}</p>
+            <p><strong>Salary:</strong> {{data.salary}}</p>
+            <p><strong>Employment Type:</strong> {{data.employment_type}}</p>
+            <p><strong>Posted On:</strong> {{data.post_date}}</p>
+            <p><strong>Posted by:</strong> {{data.user.username}}</p>
+            <p><strong>Application Deadline:</strong>{{data.application_deadline}}</p>
+            <p class="job-description">{{data.description}}</p>
+            
+            {% if user.user_type != 'admin' %}
+            <a href="{% url 'apply_now' data.id %}" class="apply-button">Apply Now</a>
+            {% endif %}
+                
+
+        </div>
+
+
+    </div>
+    {% endfor %}
+        
+  
+</div>
+{% endblock body %}
+    
+

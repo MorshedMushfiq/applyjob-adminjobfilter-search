@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+
+
+{% block body %}
+
+
+<div class="profile-container">
+    <h1>User Profile</h1>
+    <div class="profile-info">
+        <h2>{{request.user.username}}</h2>
+        <p><strong>Email:</strong> {{user.email}}</p>
+        <p><strong>Phone:</strong> (123) 456-7890</p>
+        <p><strong>Location:</strong> San Francisco, CA</p>
+        <p><strong>Bio:</strong> Web Developer with 5 years of experience in building responsive and accessible websites.</p>
+    </div>
+    <div class="section">
+        <h3>Skills</h3>
+        <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>React, Node.js</li>
+            <li>Responsive Design</li>
+            <li>Version Control (Git)</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h3>Education</h3>
+        <p><strong>Bachelor of Science in Computer Science</strong></p>
+        <p>University of California, Berkeley, 2015 - 2019</p>
+    </div>
+    <div class="section">
+        <h3>Experience</h3>
+        <p><strong>Web Developer</strong> at Tech Solutions</p>
+        <p>2020 - Present</p>
+        <ul>
+            <li>Developed and maintained web applications using React and Node.js.</li>
+            <li>Collaborated with cross-functional teams to enhance user experience.</li>
+        </ul>
+        <p><strong>Junior Developer</strong> at Web Innovations</p>
+        <p>2019 - 2020</p>
+        <ul>
+            <li>Assisted in the development of front-end components using HTML, CSS, and JavaScript.</li>
+            <li>Participated in code reviews and maintained documentation.</li>
+        </ul>
+    </div>
+    <div class="button-group">
+
+        {% if user.user_type == "admin"  %}
+
+
+            <a href="{% url 'createdJobsByAdmin' %}" class="profile-button">Created Jobs</a>
+            <a href="{% url 'add_job' %}" class="profile-button">add job </a>
+        {% elif user.user_type == "viewer" %}
+
+            
+            <a href="#" class="profile-button add-job"> applied job </a>
+        {% endif %}
+    
+    </div>
+</div>
+
+
+
+
+    
+{% endblock body %}
+    

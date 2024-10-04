@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+
+
+
+
+{% block body %}
+
+
+
+
+<h2>Add Job</h2>
+<form action="" method="POST" id="jobAddForm">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="jobTitle">Job Title</label>
+        <input type="text" id="jobTitle" name="jobTitle" value="{{job.job_title}}" maxlength="50" required>
+        <input type="hidden" id="jobTitle" name="job_id" value="{{job.id}}" maxlength="50">
+    </div>
+    <div class="form-group">
+        <label for="companyName">Company Name</label>
+        <input type="text" id="companyName" name="companyName" value="{{job.company_name}}" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" value="{{job.location}}" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Job Description</label>
+        <textarea id="description" name="description" rows="4" required>{{job.description}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="salary">Salary</label>
+        <input type="text" id="salary" value="{{job.salary}}" name="salary" maxlength="50" required>
+    </div>
+    <div class="form-group">
+        <label for="employmentType">Employment Type</label>
+        <select id="employmentType" name="employmentType" required>
+            <option value="">Select Type</option>
+            <option value="full_time"
+            
+            {% if job.employment_type == "full_time" %}
+                selected
+            {% endif %}
+                
+            >Full-Time</option>
+            <option value="part_time"
+            {% if job.employment_type == "part_time" %}
+            selected
+        {% endif %}>Part-Time</option>
+            <option value="contract"
+            {% if job.employment_type == "contract" %}
+            selected
+            {% endif %}
+            >Contract</option>
+            <option value="internship"
+            {% if job.employment_type == "internship" %}
+            selected
+            {% endif %}
+            >Internship</option>
+            <option value="temporary"
+            {% if job.employment_type == "temporary" %}
+            selected
+            {% endif %}
+            >Temporary</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="applicationDeadline">Application Deadline</label>
+        <input type="date" id="applicationDeadline"  value="{{job.application_deadline|date:'Y-m-d'}}" name="applicationDeadline" required>
+    </div>
+    <button type="submit">Update Job</button>
+</form>
+
+
+
+
+    
+{% endblock body %}
+    
+
+
+
+

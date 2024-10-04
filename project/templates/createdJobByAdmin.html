@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+
+
+{% block body %}
+
+
+
+<div class="job-feed-section">
+    <h2>Job Feed</h2>
+    {{user.username}}
+    {{user.user_type}}
+    {% include 'messages.html' %}
+    
+    {% for data in job %}
+    <div class="job-list">
+        <div class="job-item">
+            <h3>{{data.job_title}}</h3>
+            <p><strong>Company:</strong> {{data.company_name}}</p>
+            <p><strong>Location:</strong> {{data.location}}</p>
+            <p><strong>Salary:</strong> {{data.salary}}</p>
+            <p><strong>Employment Type:</strong> {{data.employment_type}}</p>
+            <p><strong>Posted On:</strong> {{data.post_date}}</p>
+            <p><strong>Posted by:</strong> {{user.username}}</p>
+            <p><strong>Application Deadline:</strong>{{data.application_deadline}}</p>
+            <p class="job-description">{{data.description}}</p>
+        
+
+            <a href="{% url 'jobEdit' data.id %}">Edit</a>
+
+            <a href="#">Applicants</a>
+            <a href=" {% url 'jobDelete' data.id  %}">Delete</a>
+
+        </div>
+
+
+    </div>
+    {% endfor %}
+        
+    
+{% endblock body %}
+    
